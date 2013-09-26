@@ -50,14 +50,20 @@
     self.view = _textView;
 }
 
+- (void)viewDidLoad
+{
+#if __IPHONE_7_0
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+#endif
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     _viewOnScreen = YES;
     [_textView becomeFirstResponder];
     [super viewWillAppear:animated];
-
-    //if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    //    [self performSelector:@selector(setEdgesForExtendedLayout:) withObject:UIRectEdgeNone];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
