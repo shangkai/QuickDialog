@@ -37,6 +37,8 @@
 
 - (void)setOffImageName:(NSString *)name;
 
-
 - (void)switched:(id)switched;
+
+- (void)buttonPressed:(UIButton *)boolButton;
+
 @end

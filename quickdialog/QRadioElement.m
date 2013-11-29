@@ -157,7 +157,12 @@
     _selected = aSelected;
 
     self.preselectedElementIndex = [NSIndexPath indexPathForRow:_selected inSection:0];
-    self.image = [UIImage imageNamed:[_itemsImageNames objectAtIndex:(NSUInteger) self.selected]];
+    NSString* imageName = [_itemsImageNames objectAtIndex:(NSUInteger) self.selected];
+    if(imageName){
+        self.image = [UIImage imageNamed:imageName];
+    } else {
+        self.image = nil;
+    }
     
     [self handleEditingChanged];
 }

@@ -24,6 +24,7 @@
 
 */
 
+@protocol QElementDelegate;
 @interface QElement : NSObject {
 
 @protected
@@ -37,7 +38,8 @@
     void (^_onSelected)(void);
     NSString * _controllerAction;
 }
-
+@property(nonatomic, assign)BOOL canEdit;
+@property(nonatomic, unsafe_unretained) id<QElementDelegate> elementDelegate;
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 @property(nonatomic, copy) void (^onSelected)(void);
@@ -79,5 +81,14 @@
 
 - (void)fetchValueUsingBindingsIntoObject:(id)object;
 
+
+@end
+
+@protocol QElementDelegate <NSObject>
+
+-(void)didRemoveElement:(QElement*)element;
+
+@optional
+-(BOOL)canDeleteElement:(QElement*)element;
 
 @end

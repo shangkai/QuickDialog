@@ -42,6 +42,8 @@
 @property(nonatomic, strong) UIPopoverController *popoverBeingPresented;
 @property(nonatomic, strong) UIPopoverController *popoverForChildRoot;
 
+@property(nonatomic, weak) id<UIScrollViewDelegate> scrollViewDelegate;
+
 
 - (void)loadView;
 

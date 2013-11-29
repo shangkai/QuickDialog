@@ -46,4 +46,6 @@
 
 - (void)reloadCellForElements:(QElement *)element, ... NS_REQUIRES_NIL_TERMINATION;
 
+-(void)reloadQSection:(QSection*)section;
+
 @end

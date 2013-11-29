@@ -136,5 +136,11 @@
     va_end(args);
 }
 
+-(void)reloadQSection:(QSection*)section{
+    NSInteger index = [section.rootElement getVisibleIndexForSection:section];
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
+    [self reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+}
+
 
 @end

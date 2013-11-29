@@ -82,8 +82,8 @@
     QSection *subsection = [[QSection alloc] initWithTitle:@"Long title for the long list of elements"];
     for (int i = 0; i<1000; i++){
         QBooleanElement *bool1 = [[QBooleanElement alloc] initWithTitle:[NSString stringWithFormat:@"Option %d", i] BoolValue:(i % 3 == 0)];
-        bool1.onImage = [UIImage imageNamed:@"imgOn"];
-        bool1.offImage = [UIImage imageNamed:@"imgOff"];
+        bool1.onImage = [UIImage imageNamed:@"imgOn.png"];
+        bool1.offImage = [UIImage imageNamed:@"imgOff.png"];
         bool1.onValueChanged = ^(QRootElement *el){
             NSLog(@"Bool selected! ");
         };
@@ -290,7 +290,7 @@
 
     QSection *section1 = [[QSection alloc] initWithTitle:@"Radio element with push"];
     [section1 addElement:[[QRadioElement alloc] initWithItems:[NSArray arrayWithObjects:@"Football", @"Soccer", @"Formula 1", nil] selected:0]];
-    [section1 addElement:[[QRadioElement alloc] initWithItems:[NSArray arrayWithObjects:@"Football", @"Soccer", @"Formula 1", nil] selected:0 title:@"Sport"]];
+    [section1 addElement:[[QRadioElement alloc] initWithItems:[NSArray arrayWithObjects:@"Football", @"Soccer", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", @"Formula 1", nil] selected:0 title:@"Sport"]];
     [section1 addElement:[[QRadioElement alloc] initWithDict:[NSDictionary dictionaryWithObjectsAndKeys:@"FerrariObj", @"Ferrari", @"McLarenObj", @"McLaren", @"MercedesObj", @"Mercedes", nil] selected:0 title:@"With Dict"]];
 
     QRadioElement *elementWithAction = [[QRadioElement alloc] initWithItems:[NSArray arrayWithObjects:@"Ferrari", @"McLaren", @"Lotus", nil] selected:0 title:@"WithAction"];

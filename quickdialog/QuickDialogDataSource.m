@@ -56,9 +56,19 @@
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    QSortingSection *section = ((QSortingSection *) [_tableView.root getVisibleSectionForIndex: indexPath.section]);
-    if ([section removeElementForRow:indexPath.row]){
+    QSection  *section = [_tableView.root getVisibleSectionForIndex: indexPath.section];
+    if ([section isKindOfClass:[QSortingSection class]]){
+        QSortingSection *sortSection = (QSortingSection *) section;
+        if ([sortSection removeElementForRow:indexPath.row]){
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    } else {
+        QElement* element = [section getVisibleElementForIndex:indexPath.row];
+        [section.elements removeObject:element];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if([element.elementDelegate respondsToSelector:@selector(didRemoveElement:)]){
+            [element.elementDelegate didRemoveElement:element];
+        }
     }
 }
 
@@ -71,6 +81,13 @@
     QSection  *section = [_tableView.root getVisibleSectionForIndex: indexPath.section];
     if ([section isKindOfClass:[QSortingSection class]]){
         return ([(QSortingSection *) section canRemoveElementForRow:indexPath.row]);
+    }
+    QElement* element = [section getVisibleElementForIndex:indexPath.row];
+    if([element.elementDelegate respondsToSelector:@selector(canDeleteElement:)]){
+        return [element.elementDelegate canDeleteElement:element];
+    }
+    if(element.canEdit){
+        return element.canEdit;
     }
     return tableView.editing;
 }

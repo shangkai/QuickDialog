@@ -20,6 +20,8 @@
 
 @interface QButtonElement : QLabelElement
 
+@property(nonatomic,strong)UIColor* color;
+
 - (QButtonElement *)init;
 
 - (QButtonElement *)initWithTitle:(NSString *)title;

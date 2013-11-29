@@ -101,6 +101,17 @@
     self.headerView.contentMode = UIViewContentModeCenter;
 }
 
+-(void)setFooterView:(UIView *)footerView{
+    _footerView = footerView;
+}
+
+-(void)setFooter:(NSString *)aFooter{
+    if(footer != aFooter){
+        footer = aFooter;
+        _footerView = nil;
+    }
+}
+
 - (QSection *)initWithTitle:(NSString *)sectionTitle {
     self = [super init];
     if (self) {

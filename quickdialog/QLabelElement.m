@@ -26,17 +26,27 @@
 @synthesize accessoryType = _accessoryType;
 @synthesize keepSelected = _keepSelected;
 
+-(id)init{
+    self = [super init];
+    _accessoryType = -1;
+    return self;
+}
 
 - (QLabelElement *)initWithTitle:(NSString *)title Value:(id)value {
     self = [super init];
     _title = title;
     _value = value;
     _keepSelected = YES;
+    _accessoryType = -1;
     return self;
 }
 
 -(void)setImageNamed:(NSString *)name {
-    self.image = [UIImage imageNamed:name];
+    if(name){
+        self.image = [UIImage imageNamed:name];
+    } else {
+        self.image = nil;
+    }
 }
 
 - (NSString *)imageNamed {
@@ -56,7 +66,7 @@
     cell.textLabel.text = _title;
     cell.detailTextLabel.text = [_value description];
     cell.imageView.image = _image;
-    cell.accessoryType = _accessoryType != UITableViewCellAccessoryNone ? _accessoryType : self.controllerAccessoryAction != nil ? UITableViewCellAccessoryDetailDisclosureButton : ( self.sections!= nil || self.controllerAction!=nil ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
+    cell.accessoryType = _accessoryType != -1 ? _accessoryType : self.controllerAccessoryAction != nil ? UITableViewCellAccessoryDetailDisclosureButton : ( self.sections!= nil || self.controllerAction!=nil ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     cell.selectionStyle = self.sections!= nil || self.controllerAction!=nil || self.onSelected!=nil ? UITableViewCellSelectionStyleBlue: UITableViewCellSelectionStyleNone;
     return cell;
 }

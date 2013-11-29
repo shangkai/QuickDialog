@@ -129,7 +129,7 @@
 
     self.accessoryType = _entryElement.accessoryType;
 
-    if (_entryElement.hiddenToolbar){
+    if (_entryElement.hiddenToolbar || !_entryElement.enabled){
         _textField.inputAccessoryView = nil;
     } else {
         UIToolbar *toolbar = [self createActionBar];

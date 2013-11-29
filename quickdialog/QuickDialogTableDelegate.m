@@ -101,5 +101,9 @@
 
 }
 
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([_tableView.controller.scrollViewDelegate respondsToSelector:@selector(scrollViewDidScroll:)]){
+        [_tableView.controller.scrollViewDelegate scrollViewDidScroll:scrollView];
+    }
+}
 @end
